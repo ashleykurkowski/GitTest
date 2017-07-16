@@ -79,7 +79,6 @@ export class AppComponent implements OnInit {
 
   moveDivToPoint(point){
     var div = document.getElementById("circle");
-    console.log("div", div);
     div.style.position = "absolute";
     div.style.left = point.x + 'px';
     div.style.top = point.y + 'px';

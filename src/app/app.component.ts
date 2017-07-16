@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs/Rx'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +15,9 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     let point = { x: 0, y: 0};
     this.movePoint(point);
+
+    let observable = Observable.fromEvent(document, 'mousemove');
+    let subscription = observable.subscribe( (e: MouseEvent) => this.moveDash(e.clientX));
   }
 
   movePoint(point: any){
@@ -82,6 +87,12 @@ export class AppComponent implements OnInit {
     div.style.position = "absolute";
     div.style.left = point.x + 'px';
     div.style.top = point.y + 'px';
+  }
+
+  moveDash(x){
+    var div = document.getElementById("dash");
+    div.style.position = "absolute";
+    div.style.left = x+'px';
   }
 
 
